@@ -1,0 +1,16 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+CodeMagics	../ok_editor.py	/^from IPython.core.magic import (Magics, magics_class, CodeMagics, line_magic, cell_magic, line_cell_magic)$/;"	kind:namespace	line:1
+Magics	../ok_editor.py	/^from IPython.core.magic import (Magics, magics_class, CodeMagics, line_magic, cell_magic, line_cell_magic)$/;"	kind:namespace	line:1
+OkMagics	../ok_editor.py	/^class OkMagics(CodeMagics):$/;"	kind:class	line:5
+cell_magic	../ok_editor.py	/^from IPython.core.magic import (Magics, magics_class, CodeMagics, line_magic, cell_magic, line_cell_magic)$/;"	kind:namespace	line:1
+line_cell_magic	../ok_editor.py	/^from IPython.core.magic import (Magics, magics_class, CodeMagics, line_magic, cell_magic, line_cell_magic)$/;"	kind:namespace	line:1
+line_magic	../ok_editor.py	/^from IPython.core.magic import (Magics, magics_class, CodeMagics, line_magic, cell_magic, line_cell_magic)$/;"	kind:namespace	line:1
+magics_class	../ok_editor.py	/^from IPython.core.magic import (Magics, magics_class, CodeMagics, line_magic, cell_magic, line_cell_magic)$/;"	kind:namespace	line:1
+ok	../ok_editor.py	/^    def ok(self, arg_s):$/;"	kind:member	line:8
+ok_editor.py	../ok_editor.py	1;"	kind:file	line:1
+os	../ok_editor.py	/^import os$/;"	kind:namespace	line:2
