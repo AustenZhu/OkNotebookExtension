@@ -1,5 +1,6 @@
 from IPython.core.magic import (Magics, magics_class, line_magic, cell_magic, line_cell_magic)
 import os
+import subprocess
 
 @magics_class
 class OkMagics(Magics):
@@ -26,7 +27,7 @@ class OkMagics(Magics):
         args = 'tests/' + args 
         
         if not os.path.exists('tests'):
-            os.makedirs("tests")
+            subprocess.call('ok_assets/default.sh')
 
             
         search_ns = 'n' in opts #TO-DO: make sure that template choice works
