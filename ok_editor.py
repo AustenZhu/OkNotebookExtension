@@ -8,7 +8,7 @@ class OkMagics(Magics):
     def ok(self, arg_s):
         """Load ok test into the current frontend.
 
-        Usage:
+        \\Usage:
             %ok [options] ok_test
 
             where ok_test is the name of the ok_test, NOT the relative path of the file containing the ok_test. If no file is found, automatically creates a file with a default template.
@@ -27,15 +27,16 @@ class OkMagics(Magics):
         
         if not os.path.exists('tests'):
             os.makedirs("tests")
+
             
         search_ns = 'n' in opts #TO-DO: make sure that template choice works
         if 't' in opts: 
             template_path = opts['t']
             if not os.path.exists(template_path): 
                 print("File Doesn't Exist - Reverting to default template")
-                template_path = '~/.ipython/extensions/template.py'
+                template_path = '~/.ipython/extensions/ok_assets/template.py'
         else: 
-            template_path = '~/.ipython/extensions/template.py'
+            template_path = '~/.ipython/extensions/ok_assets/template.py'
 
         try: 
             contents = self.shell.find_user_code(args, search_ns=search_ns)
