@@ -8,7 +8,7 @@ mv ok_assets ok_editor.py ~/.ipython/extensions/
 
 To load the extension into a notebook, run the following in a cell: 
 
-```bash
+```python
 %load_ext ok_editor
 ```
 

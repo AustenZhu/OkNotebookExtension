@@ -19,20 +19,22 @@ class OkMagics(Magics):
             -n : Include user's namespace when searching for source code.
             TODO: Finish -t method
             -t <source>: Specify what template that you want to use. source should be a relative path from the notebook.
+
+        Examples: 
+            %ok q1 
+            %ok q2
         """
         opts, args = self.parse_options(arg_s, 'yns:r:') 
 
         if not args: 
             raise ValueError('Missing ok_test name') 
-
-        #Creating relative path to tests: 
-        args = 'tests/' + args 
         
+        #Run bash script to initialize tests folder 
         if not os.path.exists('tests'):
             subprocess.call('ok_assets/default.sh')
-
             
         search_ns = 'n' in opts #TO-DO: make sure that template choice works
+        
         if 't' in opts: 
             template_path = opts['t']
             if not os.path.exists(template_path): 
@@ -41,15 +43,17 @@ class OkMagics(Magics):
         else: 
             template_path = '~/.ipython/extensions/ok_assets/template.py'
 
+        #Creating relative path to tests: 
+        if 'py' not in args: 
+            args = args + '.py'
+        args = 'tests/' + args 
+
         try: 
             contents = self.shell.find_user_code(args, search_ns=search_ns)
-        except NameError as error:
-            print(error) 
+        except (NameError, ValueError) as error:
+            print(error)
             contents = self.shell.find_user_code(template_path, search_ns=False)
-        except ValueError as error:
-            print(error) 
-            contents = self.shell.find_user_code(template_path, search_ns=False)
-
+        
         contents = "%%writefile {}\n".format(args) + contents 
 
         self.shell.set_next_input(contents, replace=True)
