@@ -1,14 +1,13 @@
-from IPython.core.magic import (Magics, magics_class, line_magic, cell_magic, line_cell_magic)
 import os
-import sys
-from subprocess import call 
+from shutil import copyfile
+from IPython.core.magic import (Magics, magics_class, line_magic, cell_magic, line_cell_magic)
 
 @magics_class
 class OkMagics(Magics):
     """Magics related to Okpy"""
 
     @line_magic
-    def init_ok(self, arg_s): 
+    def okinit(self, arg_s): 
         """Initialize a .ok file
 
         \\Usage: 
@@ -27,9 +26,26 @@ class OkMagics(Magics):
         """
         opts, args = self.parse_options(arg_s, 'yns:r:') 
         
-        if not args: 
-            notebook_name = os.path.realpath(__file__).replace('.ipynb', '')
-            call('ok_assets/init.sh ' + notebook_name, shell=True)
+        #Checking if ok already exists
+        ok_file = [f for f in os.listdir() if '.ok' in f]
+        if not ok_file:
+            ok_file_name = os.path.basename(__file__).replace('.ipynb', '') + '.ok'
+            copyfile('~/.ipython/extensions/ok_assets/default.ok', ok_file_name)
+        else: 
+            print('An ok file already exists. That file is being loaded')
+            ok_file_name = ok_file[0]
+
+        #Loading in the content: 
+        content = self.shell.find_user_code(ok_file_name, search_ns=False)
+
+        #If there is an argument, replace a line with the endpoint
+        if args: 
+            content.replace('"SPECIFY OK ENDPOINT HERE"', '"' + args + '"')
+        
+        contents = "%%writefile {}\n".format(args) + contents 
+
+        self.shell.set_next_input(contents, replace=True)
+
 
     @line_magic
     def ok(self, arg_s):
@@ -49,6 +65,11 @@ class OkMagics(Magics):
         Examples: 
             %ok q1 
             %ok q2
+
+        WARNING: This magic method will load any file that you input into 
+        the tests folder, so please use it only to load tests 
+        ie. Don't put any large files into the test folder and then use 
+        this magic method to edit them. 
         """
         opts, args = self.parse_options(arg_s, 'yns:r:') 
 
