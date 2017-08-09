@@ -1,0 +1,15 @@
+{
+  "name": "CS8",
+  "endpoint": "SPECIFY OK ENDPOINT HERE",
+  "src": [
+    "submission.py"
+  ],
+  "tests": {
+      "tests/q*.py": "ok_test"
+  },
+  "protocols": [
+      "file_contents",
+      "grading",
+      "backup"
+  ]
+}

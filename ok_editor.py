@@ -1,10 +1,36 @@
 from IPython.core.magic import (Magics, magics_class, line_magic, cell_magic, line_cell_magic)
 import os
-import subprocess
+import sys
+from subprocess import call 
 
 @magics_class
 class OkMagics(Magics):
     """Magics related to Okpy"""
+
+    @line_magic
+    def init_ok(self, arg_s): 
+        """Initialize a .ok file
+
+        \\Usage: 
+            %init_ok [endpoint]
+
+            Where endpoint specifies the okpy endpoint for the notebook
+            NOTE: This is an optional argument, 
+
+        The %init_ok magic will NOT override an existing ok file, so if 
+            you want to edit an existing file, simply use: 
+                %load name_of_ok_file
+
+        Examples: 
+            %ok cal/data8/sp17/lab07
+            %ok cal/data8r/su17/lab08
+        """
+        opts, args = self.parse_options(arg_s, 'yns:r:') 
+        
+        if not args: 
+            notebook_name = os.path.realpath(__file__).replace('.ipynb', '')
+            call('ok_assets/init.sh ' + notebook_name, shell=True)
+
     @line_magic
     def ok(self, arg_s):
         """Load ok test into the current frontend.
@@ -31,7 +57,10 @@ class OkMagics(Magics):
         
         #Run bash script to initialize tests folder 
         if not os.path.exists('tests'):
-            subprocess.call('ok_assets/default.sh')
+            try: 
+                os.makedirs('tests')
+            except OSError as error: 
+                raise OSError(error)
             
         search_ns = 'n' in opts #TO-DO: make sure that template choice works
         
@@ -58,5 +87,5 @@ class OkMagics(Magics):
 
         self.shell.set_next_input(contents, replace=True)
         
-def load_ipython_extension(ipython): 
+def load_ipython_extension(ipython):
     ipython.register_magics(OkMagics)
