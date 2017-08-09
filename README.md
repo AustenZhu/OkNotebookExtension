@@ -2,20 +2,20 @@ A Jupyter Notebook extension that allows you to write okpy tests in cell.
 
 To use and install the extension, run the following lines in your terminal
 
-'''bash
+```bash
 mv ok_assets ok_editor.py ~/.ipython/extensions/
-'''
+```
 
 To load the extension into a notebook, run the following in a cell: 
 
-'''bash
+```bash
 %load_ext ok_editor
-'''
+```
 
 To use the extension, run a line magic: 
-'''python
+```python
 %ok name_of_ok_test
-'''
+```
 
 Make sure to only specify the name - the extension will use the tests directory (if it exists, or create it if it does not) to find your specified name. 
 

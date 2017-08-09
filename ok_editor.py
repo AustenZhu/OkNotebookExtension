@@ -12,10 +12,12 @@ class OkMagics(Magics):
         \\Usage:
             %ok [options] ok_test
 
-            where ok_test is the name of the ok_test, NOT the relative path of the file containing the ok_test. If no file is found, automatically creates a file with a default template.
+            where ok_test is the name of the ok_test, NOT the relative path of the file containing the ok_test. 
+            If no file is found, automatically creates a file with a default template.
 
         Options:
             -n : Include user's namespace when searching for source code.
+            TODO: Finish -t method
             -t <source>: Specify what template that you want to use. source should be a relative path from the notebook.
         """
         opts, args = self.parse_options(arg_s, 'yns:r:') 
