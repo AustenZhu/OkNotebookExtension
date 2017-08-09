@@ -41,7 +41,11 @@ class OkMagics(Magics):
 
         try: 
             contents = self.shell.find_user_code(args, search_ns=search_ns)
-        except ValueError: 
+        except NameError as error:
+            print(error) 
+            contents = self.shell.find_user_code(template_path, search_ns=False)
+        except ValueError as error:
+            print(error) 
             contents = self.shell.find_user_code(template_path, search_ns=False)
 
         contents = "%%writefile {}\n".format(args) + contents 
