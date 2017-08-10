@@ -27,22 +27,24 @@ class OkMagics(Magics):
         opts, args = self.parse_options(arg_s, 'yns:r:') 
         
         #Checking if ok already exists
+        print(os.getcwd())
         ok_file = [f for f in os.listdir() if '.ok' in f]
         if not ok_file:
-            ok_file_name = os.path.basename(__file__).replace('.ipynb', '') + '.ok'
-            copyfile('~/.ipython/extensions/ok_assets/default.ok', ok_file_name)
+            #Correcting file suffixes
+            ok_file_name = os.path.basename(__file__).replace('.ipynb', '').replace('.py', '') + '.ok'
+            true_path = '~/.ipython/extensions/ok_assets/default.ok'
         else: 
             print('An ok file already exists. That file is being loaded')
-            ok_file_name = ok_file[0]
+            ok_file_name, true_path = ok_file[0], ok_file[0]
 
         #Loading in the content: 
-        contents = self.shell.find_user_code(ok_file_name, search_ns=False)
+        contents = self.shell.find_user_code(true_path, search_ns=False)
 
         #If there is an argument, replace a line with the endpoint
         if args: 
             contents.replace('"SPECIFY OK ENDPOINT HERE"', '"' + args + '"')
         
-        contents = "%%writefile {}\n".format(args) + contents 
+        contents = "%%writefile {}\n".format(ok_file_name) + contents 
 
         self.shell.set_next_input(contents, replace=True)
 
