@@ -11,39 +11,34 @@ class OkMagics(Magics):
         """Initialize a .ok file
 
         \\Usage: 
-            %init_ok [endpoint]
+            %init_ok <filename>
 
-            Where endpoint specifies the okpy endpoint for the notebook
-            NOTE: This is an optional argument, 
-
-        The %init_ok magic will NOT override an existing ok file, so if 
-            you want to edit an existing file, simply use: 
-                %load name_of_ok_file
+            Where filename specifies the name of the ok file
+            NOTE: This is an optional argument, and if any .ok file already
+            exists, then that file will be loaded instead. 
 
         Examples: 
-            %ok cal/data8/sp17/lab07
-            %ok cal/data8r/su17/lab08
+            %okinit
         """
-        opts, args = self.parse_options(arg_s, 'yns:r:') 
+        #Unused options
+        ___, args = self.parse_options(arg_s, 'yns:r:') 
         
         #Checking if ok already exists
         print(os.getcwd())
         ok_file = [f for f in os.listdir() if '.ok' in f]
         if not ok_file:
-            #Correcting file suffixes
-            ok_file_name = os.path.basename(__file__).replace('.ipynb', '').replace('.py', '') + '.ok'
+            if args: 
+                ok_file_name = args if '.ok' in args else args + '.ok'
+            else: 
+                ok_file_name = 'default.ok'
             true_path = '~/.ipython/extensions/ok_assets/default.ok'
         else: 
-            print('An ok file already exists. That file is being loaded')
+            #print('An ok file already exists. That file is being loaded')
             ok_file_name, true_path = ok_file[0], ok_file[0]
 
         #Loading in the content: 
         contents = self.shell.find_user_code(true_path, search_ns=False)
 
-        #If there is an argument, replace a line with the endpoint
-        if args: 
-            contents.replace('"SPECIFY OK ENDPOINT HERE"', '"' + args + '"')
-        
         contents = "%%writefile {}\n".format(ok_file_name) + contents 
 
         self.shell.set_next_input(contents, replace=True)

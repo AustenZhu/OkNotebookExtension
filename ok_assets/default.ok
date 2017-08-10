@@ -1,6 +1,6 @@
 {
   "name": "CS8",
-  "endpoint": "SPECIFY OK ENDPOINT HERE",
+  "endpoint": "PUT ENDPOINT HERE",
   "src": [
     "submission.py"
   ],
