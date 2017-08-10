@@ -36,11 +36,11 @@ class OkMagics(Magics):
             ok_file_name = ok_file[0]
 
         #Loading in the content: 
-        content = self.shell.find_user_code(ok_file_name, search_ns=False)
+        contents = self.shell.find_user_code(ok_file_name, search_ns=False)
 
         #If there is an argument, replace a line with the endpoint
         if args: 
-            content.replace('"SPECIFY OK ENDPOINT HERE"', '"' + args + '"')
+            contents.replace('"SPECIFY OK ENDPOINT HERE"', '"' + args + '"')
         
         contents = "%%writefile {}\n".format(args) + contents 
 
