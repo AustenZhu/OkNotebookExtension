@@ -107,3 +107,4 @@ class OkMagics(Magics):
         
 def load_ipython_extension(ipython):
     ipython.register_magics(OkMagics)
+    

@@ -5,7 +5,7 @@ define(['require', 'jquery', 'base/js/namespace'], function (require, $, IPython
 
     }
 
-    
+
 
     var create_ok_buttons = function() {
 
