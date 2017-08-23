@@ -102,6 +102,9 @@ class OkMagics(Magics):
             contents = self.shell.find_user_code(template_path, search_ns=False)
         
         #Comment the line below out if metadata tags are being used
+        #   or use append a different line (useful if the make parses)
+        #   the actual code and not the metadata
+        #   IF metadata is being used, you have to manually insert that
         contents = "%%writefile {}\n".format(args) + contents 
 
         self.shell.set_next_input(contents, replace=True)
