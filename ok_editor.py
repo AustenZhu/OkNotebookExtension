@@ -101,6 +101,7 @@ class OkMagics(Magics):
             print(error)
             contents = self.shell.find_user_code(template_path, search_ns=False)
         
+        #Comment the line below out if metadata tags are being used
         contents = "%%writefile {}\n".format(args) + contents 
 
         self.shell.set_next_input(contents, replace=True)
