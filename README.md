@@ -5,7 +5,7 @@ Frontend extension for editing oktests using the %ok cell magic.
 
 To automatically install both the magic and the nbextension, run: 
 ```bash
-curl -L https://raw.githubusercontent.com/AustenZhu/OkNotebookExtension/master/install.sh > ~/
+curl -L https://raw.githubusercontent.com/AustenZhu/OkNotebookExtension/master/install.sh > ~/install.sh
 sudo bash ~/install.sh
 ```
 
