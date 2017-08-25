@@ -22,7 +22,7 @@ define(['require', 'jquery', 'base/js/namespace'], function (require, $, IPython
                                 IPython.notebook.insert_cell_below('code', location);
                                 var newcell = IPython.notebook.get_cell(location+1); 
                                 var testspan = $(cell).find('.cm-string')[0].innerText.replace('.py', '');
-                                newcell.meta
+                                newcell.metadata['test'] = true; 
                                 newcell.set_text('%ok ' + testspan);
                             });
                             button.append($('<img/>').attr({
