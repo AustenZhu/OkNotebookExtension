@@ -26,7 +26,7 @@ define(['require', 'jquery', 'base/js/namespace'], function (require, $, IPython
                                 newcell.set_text('%ok ' + testspan);
                             });
                             button.append($('<img/>').attr({
-                                src: 'ok_assets/ok.svg',
+                                src: 'https://okpy.org/static/img/logo-tiny.svg',
                                 title: 'OKPIC'
                             }));
 
@@ -70,7 +70,7 @@ define(['require', 'jquery', 'base/js/namespace'], function (require, $, IPython
     };
 
     var load_ipython_extension = function() {
-        load_css(); 
+        import_css(); 
         ok_toolbar_button();
         create_ok_buttons(); 
     };
