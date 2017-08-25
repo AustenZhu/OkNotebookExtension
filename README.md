@@ -1,13 +1,12 @@
 Ok Editor
 ===============
 
-NOTE: MAKE SURE that you install the ok_magic first!
-
 Frontend extension for editing oktests using the %ok cell magic.
 
-To automatically install both the magic and the nbextension, copy install.sh and then run 
+To automatically install both the magic and the nbextension, run: 
 ```bash
-sudo bash install.sh
+curl -L https://raw.githubusercontent.com/AustenZhu/OkNotebookExtension/master/install.sh > ~/
+sudo bash ~/install.sh
 ```
 
 To manually install: 
