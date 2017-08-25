@@ -39,30 +39,7 @@ define(['require', 'jquery', 'base/js/namespace'], function (require, $, IPython
                 })
             }
             counter += 1
-        });
-
-        var cells = IPython.notebook.get_cells(); 
-
-
-        notebook.find('.code_cell').map(function(i, cell) { 
-            cell.find('.cm-property').map(function(i, prop) {
-                if(prop.innerText === 'grade') {
-                    //Add id to div in order to set css properly
-                    var id = 'prop' + counter.toString(); 
-                    prop.attr('id', id);
-                    //Add button div adjacent to grading cell
-                    notebook.append(
-                        $('<div/>')
-                        .addClass('ok-btn')
-                        .text('OK')
-                        .click(function() {
-                            //Inserts new cell below and prepopulate with magic %ok method
-                            IPython.notebook.insert_cell_below('code',0);
-                        })
-                    )
-                }
-            });
-        });
+        }); 
     };
 
     var ok = function() {
