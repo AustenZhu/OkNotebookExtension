@@ -1,5 +1,7 @@
 A Jupyter Notebook extension that allows you to write okpy tests in cell. 
 
+NOTE: This is largely a reskin of the %load function, with (hopefully) convenient changes.
+
 To use and install the extension, run the following lines in your terminal
 
 ```bash

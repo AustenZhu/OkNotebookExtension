@@ -1,31 +1,58 @@
 define(['require', 'jquery', 'base/js/namespace'], function (require, $, IPython) {
     "use strict"; 
-    
-    var make_link = function (h) {
-
-    }
 
     var create_ok_buttons = function() {
         //finding the location of all grading cells
-        $('#notebook').find('.cm-property').map(function(i,prop) {
-            if(prop.innerText === 'grade') {
-                //Adding button div here, adjacent to grading cell
-            };
+        var notebook = $("#notebook");
+        var counter = 0; 
+        //Refactor this code to search within all cells, incrementing counter
+        //  And then adding button if conditions met 
+        notebook.find(".cell").map(function(i, cell) {
+            if(cell.className.includes("code_cell")) {
+                $(cell).find(".cm-property").map(function(i, prop) {
+                    if (prop.innerText === 'grade') {
+                        
+                        IPython.Notebook.insert_cell_below('code', counter);
+                        var newcell = IPython.notebook.get_cell(counter+1); 
+                        var testspan = cell.find("span:contains('q*.py')")[0].innerText;
+                        cell1.set_text('%ok q');
+                        counter += 1
+                    }
+                })
+            }
+            counter += 1
         });
-    }
+
+        notebook.find('.code_cell').map(function(i, cell) { 
+            cell.find('.cm-property').map(function(i, prop) {
+                if(prop.innerText === 'grade') {
+                    //Add id to div in order to set css properly
+                    var id = 'prop' + counter.toString(); 
+                    prop.attr('id', id);
+                    //Add button div adjacent to grading cell
+                    notebook.append(
+                        $('<div/>')
+                        .addClass('ok-btn')
+                        .text('OK')
+                        .click(function() {
+                            //Inserts new cell below and prepopulate with magic %ok method
+                            IPython.notebook.insert_cell_below('code',0);
+                        })
+                    )
+                }
+            });
+        });
+    };
 
     var ok = function() {
 
-    }
+    };
+
 
     var toggle_ok = function() {
         $("#ok-wrapper").toggle();
         //recreating buttons: 
         ok();
-    };
-
-    var ok_button = function() {
-        
     };
 
     var ok_toolbar_button = function(){
