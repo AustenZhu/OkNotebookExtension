@@ -1,40 +1,31 @@
 define(['require', 'jquery', 'base/js/namespace'], function (require, $, IPython) {
     "use strict"; 
-
     var create_ok_buttons = function() {
         //finding the location of all grading cells
         var notebook = $("#notebook");
         var counter = 0; 
-        //Refactor this code to search within all cells, incrementing counter
-        //  And then adding button if conditions met 
-
-
-
-        notebook.find(".cell").map(function(i, cell) {
+        
+        $(notebook).find(".cell").map(function(i, cell) {
             if(cell.className.includes("code_cell")) {
                 $(cell).find(".cm-property").map(function(i, prop) {
                     if (prop.innerText === 'grade') {
                         //Idea for buttons - add an attribute that stores the IPython cell
                         //WILL WORK WOOOHOOOO!
-
-                        /*
-                        var button = $('<div/>')
-                        button.cell = IPython.notebook.get_cell(counter);
-                        button.text('OK'); 
-                        button.click(function() {
-                            var location = IPython.notebook.find_cell_index(button.cell);
-                            IPython.notebook.insert_cell_below('code', location);
-                            var newcell = IPython.notebook.get_cell(location+1); 
-                            var testspan = //get correct info;
-                            cell1.set_text(testspan);
-                        })
-                        */
-                        
-
-                        IPython.Notebook.insert_cell_below('code', counter);
-                        var newcell = IPython.notebook.get_cell(counter+1); 
-                        var testspan = cell.find("span:contains('q*.py')")[0].innerText;
-                        cell1.set_text('%ok q');
+                        if ($(cell).find(".ok-btn").length === 0){
+                            var button = $('<button/>');
+                            button.cell = IPython.notebook.get_cell(counter);
+                            button.addClass("ok-btn")
+                            //button.text('OK'); 
+                            
+                            button.click(function() {
+                                var location = IPython.notebook.find_cell_index(button.cell);
+                                IPython.notebook.insert_cell_below('code', location);
+                                var newcell = IPython.notebook.get_cell(location+1); 
+                                var testspan = $(cell).find('.cm-string')[0].innerText.replace('.py', '');
+                                newcell.set_text('%ok ' + testspan);
+                            })
+                            $(cell).append(button);
+                        }
                     }
                 })
             }
@@ -43,7 +34,7 @@ define(['require', 'jquery', 'base/js/namespace'], function (require, $, IPython
     };
 
     var ok = function() {
-
+        
     };
 
 
