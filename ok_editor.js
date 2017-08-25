@@ -7,21 +7,42 @@ define(['require', 'jquery', 'base/js/namespace'], function (require, $, IPython
         var counter = 0; 
         //Refactor this code to search within all cells, incrementing counter
         //  And then adding button if conditions met 
+
+
+
         notebook.find(".cell").map(function(i, cell) {
             if(cell.className.includes("code_cell")) {
                 $(cell).find(".cm-property").map(function(i, prop) {
                     if (prop.innerText === 'grade') {
+                        //Idea for buttons - add an attribute that stores the IPython cell
+                        //WILL WORK WOOOHOOOO!
+
+                        /*
+                        var button = $('<div/>')
+                        button.cell = IPython.notebook.get_cell(counter);
+                        button.text('OK'); 
+                        button.click(function() {
+                            var location = IPython.notebook.find_cell_index(button.cell);
+                            IPython.notebook.insert_cell_below('code', location);
+                            var newcell = IPython.notebook.get_cell(location+1); 
+                            var testspan = //get correct info;
+                            cell1.set_text(testspan);
+                        })
+                        */
                         
+
                         IPython.Notebook.insert_cell_below('code', counter);
                         var newcell = IPython.notebook.get_cell(counter+1); 
                         var testspan = cell.find("span:contains('q*.py')")[0].innerText;
                         cell1.set_text('%ok q');
-                        counter += 1
                     }
                 })
             }
             counter += 1
         });
+
+        var cells = IPython.notebook.get_cells(); 
+
 
         notebook.find('.code_cell').map(function(i, cell) { 
             cell.find('.cm-property').map(function(i, prop) {
