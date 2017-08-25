@@ -1,4 +1,4 @@
-![ok](https://okpy.org/static/img/logo-tiny.svg) Editor
+![ok](https://okpy.org/static/img/logo-tiny.svg =100x100) Editor
 ===============
 
 ![Demo](http://imgur.com/FmQ32Tm.gif)
