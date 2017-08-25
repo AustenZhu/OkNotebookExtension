@@ -39,7 +39,8 @@ class OkMagics(Magics):
         #Loading in the content: 
         contents = self.shell.find_user_code(true_path, search_ns=False)
 
-        contents = "%%writefile {}\n".format(ok_file_name) + contents 
+        #Uncomment the line below if metadata parser isn't in place
+        #contents = "%%writefile {}\n".format(ok_file_name) + contents 
 
         self.shell.set_next_input(contents, replace=True)
 
