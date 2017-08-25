@@ -15,15 +15,20 @@ define(['require', 'jquery', 'base/js/namespace'], function (require, $, IPython
                             var button = $('<button/>');
                             button.cell = IPython.notebook.get_cell(counter);
                             button.addClass("ok-btn")
+                            //button.css({'height':'25px', 'width':'25px', 'padding': '0'});
                             //button.text('OK'); 
-                            
                             button.click(function() {
                                 var location = IPython.notebook.find_cell_index(button.cell);
                                 IPython.notebook.insert_cell_below('code', location);
                                 var newcell = IPython.notebook.get_cell(location+1); 
                                 var testspan = $(cell).find('.cm-string')[0].innerText.replace('.py', '');
                                 newcell.set_text('%ok ' + testspan);
-                            })
+                            });
+                            button.append($('<img/>').attr({
+                                src: 'ok_assets/ok.svg',
+                                title: 'OKPIC'
+                            }));
+
                             $(cell).append(button);
                         }
                     }
@@ -34,14 +39,20 @@ define(['require', 'jquery', 'base/js/namespace'], function (require, $, IPython
     };
 
     var ok = function() {
-        
+        create_ok_buttons(); 
+    };
+    
+    var import_css = function() {
+        var link = document.createElement('link');
+        link.type = 'text/css'; 
+        link.rel = 'stylesheet'; 
+        link.href = require.toUrl('./ok.css');
+        document.getElementsByTagName("head")[0].appendChild(link);
     };
 
 
     var toggle_ok = function() {
-        $("#ok-wrapper").toggle();
-        //recreating buttons: 
-        ok();
+        
     };
 
     var ok_toolbar_button = function(){
