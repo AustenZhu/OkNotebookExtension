@@ -1,4 +1,4 @@
-![ok](http://imgur.com/a/dhwlb.jpg) Editor
+![ok](http://i.imgur.com/84czrXg.jpg) Editor
 ===============
 
 ![Demo](http://imgur.com/FmQ32Tm.gif)
