@@ -37,10 +37,6 @@ define(['require', 'jquery', 'base/js/namespace'], function (require, $, IPython
             counter += 1
         }); 
     };
-
-    var ok = function() {
-        create_ok_buttons(); 
-    };
     
     var import_css = function() {
         var link = document.createElement('link');
@@ -52,7 +48,7 @@ define(['require', 'jquery', 'base/js/namespace'], function (require, $, IPython
 
 
     var toggle_ok = function() {
-        
+        create_ok_buttons(); 
     };
 
     var ok_toolbar_button = function(){
@@ -71,4 +67,16 @@ define(['require', 'jquery', 'base/js/namespace'], function (require, $, IPython
             ]);
         }
     };
-})
+
+    var load_ipython_extension = function() {
+        load_css(); 
+        ok_toolbar_button();
+        create_ok_buttons(); 
+    };
+
+    return {
+        load_ipython_extension : load_ipython_extension, 
+        toggle_ok : toggle_ok, 
+        create_ok_buttons : create_ok_buttons, 
+    }
+});
