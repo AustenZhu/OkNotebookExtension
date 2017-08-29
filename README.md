@@ -22,3 +22,10 @@ jupyter nbextension install --user https://rawgit.com/AustenZhu/OkNotebookExtens
 curl -L https://rawgit.com/AustenZhu/OkNotebookExtension/master/ok.css > $(jupyter --data-dir)/nbextensions/ok.css
 ```
 And then follow the README in the ok_magic folder to install the magic. 
+
+
+NOTE: Metadata for tests is already added into the file. Additionally, the most recent version no longer concatenates a 
+```python
+%%writefile
+```
+line. 
