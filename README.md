@@ -18,8 +18,8 @@ Make sure to load in the ok_magic before working with buttons:
 
 To manually install: 
 ```bash
-jupyter nbextension install --user https://rawgit.com/AustenZhu/OkNotebookExtension/master/ok_editor.js
-curl -L https://rawgit.com/AustenZhu/OkNotebookExtension/master/ok.css > $(jupyter --data-dir)/nbextensions/ok.css
+jupyter nbextension install --user https://cdn.jsdelivr.net/gh/AustenZhu/OkNotebookExtension@master/ok_editor.js
+curl -L https://cdn.jsdelivr.net/gh/AustenZhu/OkNotebookExtension@master/ok.css > $(jupyter --data-dir)/nbextensions/ok.css
 ```
 And then follow the README in the ok_magic folder to install the magic. 
 
